@@ -338,5 +338,3 @@ Cada NPC del juego usa un solo material en lugar de tres. Con docenas de NPCs di
 | ShaderNPC | Lit | ❌ | ❌ | Opaque | ❌ | ❌ | ✅ |
 
 ---
-
-> 📸 *Todas las capturas referenciadas deben colocarse en `docs/assets/shaders/` con nombres descriptivos (ej: `shader-reactivo-comparativa.png`, `mar-profundidad.png`) y actualizar las rutas en este documento.*
