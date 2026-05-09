@@ -138,7 +138,7 @@ Normal map animado (capa 1 + capa 2 con velocidades distintas)
             → [Paralelo] Sistema de espuma por profundidad
                 → Salida Lit Transparent (Albedo, Normal, Alpha)
 ```
-<img src="https://raw.githubusercontent.com/Tianaq26/eteria-world/main/docs/assets/shaders/lago.png" alt="descripcion" width="80%"/>
+<img src="https://raw.githubusercontent.com/Tianaq26/eteria-world/main/docs/assets/shaders/Lago.png" alt="descripcion" width="80%"/>
 
 > *EL shader esta en desarrollo el efecto de la espuma no funciona correctamente*
 ---
@@ -181,7 +181,7 @@ Voronoi animado (velocidad + escala)
                     → Salida Unlit Transparent (Emission, Alpha)
 ```
 
-<img src="https://raw.githubusercontent.com/Tianaq26/eteria-world/main/docs/assets/Catarata.gif" alt="Catara" width="80%"/>
+<img src="https://raw.githubusercontent.com/Tianaq26/eteria-world/main/docs/assets/shaders/Catara.gif" alt="Catara" width="80%"/>
 
 >  *El shader de Catarata se usa en un sistema de particulas*
 
@@ -233,7 +233,7 @@ MainTexture animada + Second Texture animada (direcciones opuestas)
 ### Por qué Transparent y no Opaque
 El mar necesita mostrar el fondo en zonas someras (arena, rocas sumergidas) y oscurecerse progresivamente en profundidad. Usar Transparent con Alpha Blend permite que el color del fondo influya en el resultado final, haciendo que el efecto de profundidad sea físicamente coherente con la geometría real del terreno submarino.
 
-![Mar](https://raw.githubusercontent.com/Tianaq26/eteria-world/main/docs/assets/Mar.png)
+<img src="https://raw.githubusercontent.com/Tianaq26/eteria-world/main/docs/assets/shaders/Mar.png" alt="Catara" width="80%"/>
 
 ---
 
@@ -277,7 +277,7 @@ mask (ruido) → distorsión de UVs (DistortionSpeed + distortionAmount)
 ### Por qué Additive y no Alpha Blend
 Con Alpha Blend el efecto reemplazaría parcialmente el color del fondo, perdiendo luminosidad sobre fondos oscuros. Con Additive, el efecto siempre se ve brillante independientemente del entorno: sobre cielo oscuro brilla más, sobre terreno claro se mezcla naturalmente. Es el comportamiento físicamente correcto para energía luminosa ademas añade un mejor efecto con el postprosesado(bloom, ect).
 
-<img src="https://raw.githubusercontent.com/Tianaq26/eteria-world/main/docs/assets/Rayo.gif" alt="Rayo" width="80%"/>
+<img src="https://raw.githubusercontent.com/Tianaq26/eteria-world/main/docs/assets/shaders/Rayo.gif" alt="Rayo" width="80%"/>
 
 ---
 
@@ -321,7 +321,7 @@ BlendTexture → separar canales R, G, B
 ### Impacto en rendimiento
 Cada NPC del juego usa un solo material en lugar de tres. Con docenas de NPCs distribuidos por el mundo, esto se traduce directamente en menos draw calls y menos cambios de estado de la GPU por frame. Además, facilita crear variantes visuales de NPCs: basta con cambiar la textura de `Ropa` o `Cara` para obtener un NPC visualmente distinto sin duplicar el shader.
 
-<img src="https://raw.githubusercontent.com/Tianaq26/eteria-world/main/docs/assets/npcs.png" alt="npcs" width="80%"/>
+<img src="https://raw.githubusercontent.com/Tianaq26/eteria-world/main/docs/assets/shaders/npcs.png" alt="npcs" width="80%"/>
 
 ---
 
