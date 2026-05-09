@@ -18,7 +18,7 @@
 
 ## 1. Shader Reactivo
 
-**Archivo:** `shader reactivo.shadergraph`
+**Archivo:** `shader_reactivo.shadergraph`
 **Tipo:** Lit · Opaque · Metallic Workflow
 
 ### Propósito
@@ -62,7 +62,7 @@ Textura base + escala
 ### Por qué es importante para el rendimiento
 Al tener un solo shader que cubre la mayoría de variaciones visuales, se reduce drásticamente la cantidad de shaders únicos compilados y el tiempo de cambio de estado de la GPU entre draw calls.
 
-> 📸 *[Insertar captura del shader en escena: terreno, cabaña y roca usando el mismo material con parámetros distintos]*
+<img src="docs/assets/shaders/ShaderReactivo.png" alt="descripcion" width="80%"/>
 
 ---
 
@@ -96,13 +96,12 @@ Textura base (UV del modelo)
 ### Resultado visual
 Cada dragón capturado en el juego conserva su color único generado al momento de spawn. Ese color se guarda en la base de datos y se aplica como parámetro de instancia al cargar el dragón, manteniendo coherencia visual entre sesiones.
 
-> 📸 *[Insertar captura de varios dragones con variaciones de color distintas en escena]*
-
+<img src="docs/assets/shaders/Dragones.png" alt="descripcion" width="80%"/>
 ---
 
-## 3. Rio Water
+## 3. Rio y lagos
 
-**Archivo:** `rio water.shadergraph`
+**Archivo:** `rio_water.shadergraph`
 **Tipo:** Lit · Transparent · Alpha Blend
 
 ### Propósito
@@ -139,9 +138,9 @@ Normal map animado (capa 1 + capa 2 con velocidades distintas)
             → [Paralelo] Sistema de espuma por profundidad
                 → Salida Lit Transparent (Albedo, Normal, Alpha)
 ```
+<img src="docs/assets/shaders/lago.png" alt="descripcion" width="80%"/>
 
-> 📸 *[Insertar captura del río en escena mostrando movimiento y espuma en orillas]*
-
+> *EL shader esta en desarrollo el efecto de la espuma no funciona correctamente*
 ---
 
 ## 4. Catarata
@@ -182,13 +181,15 @@ Voronoi animado (velocidad + escala)
                     → Salida Unlit Transparent (Emission, Alpha)
 ```
 
-> 📸 *[Insertar captura de cascada en escena desde ángulo lateral mostrando el efecto Voronoi y el impacto inferior]*
+<img src="docs/assets/Catarata.gif" alt="Catara" width="80%"/>
+
+>  *El shader de Catarata se usa en un sistema de particulas*
 
 ---
 
 ## 5. Water Shader (Mar)
 
-**Archivo:** `water shader.shadergraph`
+**Archivo:** `water_shader.shadergraph`
 **Tipo:** Lit · Transparent · Alpha Blend
 
 ### Propósito
@@ -232,7 +233,7 @@ MainTexture animada + Second Texture animada (direcciones opuestas)
 ### Por qué Transparent y no Opaque
 El mar necesita mostrar el fondo en zonas someras (arena, rocas sumergidas) y oscurecerse progresivamente en profundidad. Usar Transparent con Alpha Blend permite que el color del fondo influya en el resultado final, haciendo que el efecto de profundidad sea físicamente coherente con la geometría real del terreno submarino.
 
-> 📸 *[Insertar captura aérea del mar mostrando el gradiente de profundidad: azul claro en orillas, azul oscuro en el centro]*
+<img src="docs/assets/Mar.png" alt="Catara" width="80%"/>
 
 ---
 
@@ -242,7 +243,7 @@ El mar necesita mostrar el fondo en zonas someras (arena, rocas sumergidas) y os
 **Tipo:** Lit · Transparent · **Additive Blend**
 
 ### Propósito
-Shader para los efectos visuales de ataques de tipo rayo/eléctrico de los dragones. El blending **Additive** es la característica más importante: en lugar de reemplazar el color del fondo, lo suma, haciendo que el efecto siempre brille sobre cualquier superficie como si emitiera luz propia. Es el método estándar para efectos de energía, fuego y magia en videojuegos.
+Shader para los efectos visuales de ataques de tipo rayo(rayo de ambar,rayo de veneno, ect) de los dragones. El blending **Additive** es la característica más importante: en lugar de reemplazar el color del fondo, lo suma, haciendo que el efecto siempre brille sobre cualquier superficie como si emitiera luz propia. Es el método estándar para efectos de energía y magia en videojuegos.
 
 ### Parámetros expuestos
 
@@ -274,9 +275,9 @@ mask (ruido) → distorsión de UVs (DistortionSpeed + distortionAmount)
 ```
 
 ### Por qué Additive y no Alpha Blend
-Con Alpha Blend el efecto reemplazaría parcialmente el color del fondo, perdiendo luminosidad sobre fondos oscuros. Con Additive, el efecto siempre se ve brillante independientemente del entorno: sobre cielo oscuro brilla más, sobre terreno claro se mezcla naturalmente. Es el comportamiento físicamente correcto para energía luminosa.
+Con Alpha Blend el efecto reemplazaría parcialmente el color del fondo, perdiendo luminosidad sobre fondos oscuros. Con Additive, el efecto siempre se ve brillante independientemente del entorno: sobre cielo oscuro brilla más, sobre terreno claro se mezcla naturalmente. Es el comportamiento físicamente correcto para energía luminosa ademas añade un mejor efecto con el postprosesado(bloom, ect).
 
-> 📸 *[Insertar captura del ataque de rayo en combate mostrando el efecto Additive sobre el entorno]*
+<img src="docs/assets/Rayo.gif" alt="Rayo" width="80%"/>
 
 ---
 
@@ -320,7 +321,7 @@ BlendTexture → separar canales R, G, B
 ### Impacto en rendimiento
 Cada NPC del juego usa un solo material en lugar de tres. Con docenas de NPCs distribuidos por el mundo, esto se traduce directamente en menos draw calls y menos cambios de estado de la GPU por frame. Además, facilita crear variantes visuales de NPCs: basta con cambiar la textura de `Ropa` o `Cara` para obtener un NPC visualmente distinto sin duplicar el shader.
 
-> 📸 *[Insertar captura de varios NPCs con variantes de ropa distintas usando el mismo ShaderNPC]*
+<img src="docs/assets/npcs.png" alt="npcs" width="80%"/>
 
 ---
 
@@ -328,13 +329,13 @@ Cada NPC del juego usa un solo material en lugar de tres. Con docenas de NPCs di
 
 | Shader | Tipo | Transparent | Unlit | Blending | Vertex Displacement | Normal Map | GPU Instancing |
 |--------|------|-------------|-------|----------|---------------------|------------|----------------|
-| Shader Reactivo | Lit | ❌ | ❌ | Opaque | ❌ | ✅ opcional | ❌ |
+| Shader Reactivo | Lit | ❌ | ❌ | Opaque | ❌ | ✅ opcional | ✅ |
 | Dragones | Lit | ❌ | ❌ | Opaque | ❌ | ✅ | ✅ |
-| Rio Water | Lit | ✅ | ❌ | Alpha | ❌ | ✅ doble | ❌ |
+| Rio y lago | Lit | ✅ | ❌ | Alpha | ❌ | ✅ doble | ❌ |
 | Catarata | Unlit | ✅ | ✅ | Alpha | ✅ | ❌ | ❌ |
 | Water Shader | Lit | ✅ | ❌ | Alpha | ✅ | ✅ doble | ❌ |
 | Rayo VFX | Lit | ✅ | ❌ | **Additive** | ❌ | ❌ | ❌ |
-| ShaderNPC | Lit | ❌ | ❌ | Opaque | ❌ | ✅ | ❌ |
+| ShaderNPC | Lit | ❌ | ❌ | Opaque | ❌ | ❌ | ✅ |
 
 ---
 
