@@ -62,7 +62,7 @@ Textura base + escala
 ### Por qué es importante para el rendimiento
 Al tener un solo shader que cubre la mayoría de variaciones visuales, se reduce drásticamente la cantidad de shaders únicos compilados y el tiempo de cambio de estado de la GPU entre draw calls.
 
-<img src="docs/assets/shaders/ShaderReactivo.png" alt="descripcion" width="80%"/>
+<img src="../docs/assets/shaders/ShaderReactivo.png" alt="descripcion" width="80%"/>
 
 ---
 
