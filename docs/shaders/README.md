@@ -233,7 +233,7 @@ MainTexture animada + Second Texture animada (direcciones opuestas)
 ### Por qué Transparent y no Opaque
 El mar necesita mostrar el fondo en zonas someras (arena, rocas sumergidas) y oscurecerse progresivamente en profundidad. Usar Transparent con Alpha Blend permite que el color del fondo influya en el resultado final, haciendo que el efecto de profundidad sea físicamente coherente con la geometría real del terreno submarino.
 
-<img src="docs/assets/Mar.png" alt="Catara" width="80%"/>
+![Mar](https://raw.githubusercontent.com/Tianaq26/eteria-world/main/docs/assets/Mar.png)
 
 ---
 
