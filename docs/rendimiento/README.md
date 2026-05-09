@@ -23,24 +23,21 @@ La optimización no fue un paso final sino una práctica continua durante todo e
 Usado para inspeccionar el flujo exacto de dibujado de la GPU en cada frame, hilo por hilo. Permitió identificar qué objetos generaban draw calls innecesarios, qué shaders se ejecutaban más veces de lo esperado y en qué orden se procesaban las capas de renderizado.
 
 <p align="center">
-  <!-- Inserta aquí un render de modelo o comparación antes/después -->
-  <img src="docs/assets/rendimiento/frameDebuger" alt="frameDebuger" width="80%"/>
+  <img src="https://raw.githubusercontent.com/Tianaq26/eteria-world/main/docs/assets/rendimiento/frameDebuger" alt="frameDebuger" width="80%"/>
 </p>
 
 ### Unity Profiler
 Usado para analizar el consumo de CPU y GPU por frame, identificando loops costosos en scripts de IA, actualizaciones innecesarias en el hilo principal y picos de memoria. Fue clave para descubrir que el editor de Unity en sí consumía una cantidad significativa de recursos, lo que distorsionaba las métricas reales del juego.
 
 <p align="center">
-  <!-- Inserta aquí un render de modelo o comparación antes/después -->
-  <img src="docs/assets/rendimiento/profiler" alt="frameDebuger" width="80%"/>
+  <img src="https://raw.githubusercontent.com/Tianaq26/eteria-world/main/docs/assets/rendimiento/profiler" alt="frameDebuger" width="80%"/>
 </p>
 
 ### Stats Window
 Monitoreo en tiempo real de triángulos, draw calls, vértices y uso de memoria directamente desde la ventana de juego. Usado como referencia rápida durante el desarrollo para detectar picos de rendimiento al agregar nuevos elementos al mundo.
 
 <p align="center">
-  <!-- Inserta aquí un render de modelo o comparación antes/después -->
-  <img src="docs/assets/rendimiento/statsWindow" alt="frameDebuger" width="80%"/>
+  <img src="https://raw.githubusercontent.com/Tianaq26/eteria-world/main/docs/assets/rendimiento/statsWindow" alt="frameDebuger" width="80%"/>
 </p>
 ---
 
@@ -91,8 +88,7 @@ Distancia larga  → modelo LD + IA desactivada (objeto estático sin animacion 
 ```
 
 <p align="center">
-  <!-- Inserta aquí un render de modelo o comparación antes/después -->
-  <img src="docs/assets/rendimiento/LOD" alt="frameDebuger" width="80%"/>
+  <img src="https://raw.githubusercontent.com/Tianaq26/eteria-world/main/docs/assets/rendimiento/LOD" alt="frameDebuger" width="80%"/>
 </p>
 ---
 
@@ -107,7 +103,7 @@ El proceso requiere un bake previo donde Unity calcula qué objetos se bloquean 
 - Zonas de montaña donde el terreno oculta valles completos
 - Interiores de estructuras
 
-> 📸 *[Insertar captura de la ventana de Occlusion Culling con zonas configuradas]*
+> *oclusion culling*
 
 ---
 
